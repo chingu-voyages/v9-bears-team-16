@@ -5,6 +5,7 @@
     "lerna": "^3.14.1"
   },
   "scripts": {
+    "generate": "lerna run generate --parallel",
     "start": "lerna run start --parallel"
   }
 }

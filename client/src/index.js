@@ -18,7 +18,7 @@ import DetailPage from './components/DetailPage'
 import 'tachyons'
 import './index.css'
 
-const client = new ApolloClient({ uri: 'http://localhost:4000' })
+const client = new ApolloClient( { uri: 'http://localhost:4000', connectToDevTools: true })
 
 ReactDOM.render(
   <ApolloProvider client={client}>
