@@ -2,6 +2,8 @@ type Query {
   feed: [Post!]!
   drafts: [Post!]!
   post(id: ID!): Post
+  theme(id: ID!): Theme
+  themes: [Theme!]!
 }
 
 type Mutation {
@@ -15,4 +17,27 @@ type Post {
   published: Boolean!
   title: String!
   content: String!
+}
+
+type Theme {
+  id: ID!
+  title: String!
+  description: String!
+  colors: Colors!
+  font: Fonts!
+}
+
+type Colors {
+  id: ID!
+  primaryLight: String!
+  primaryDark: String!
+  accentLight: String!
+  accentDark: String!
+  accentBrand: String!
+}
+
+type Fonts {
+  id: ID!
+  primary: String!
+  secondary: String!
 }

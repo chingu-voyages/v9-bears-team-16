@@ -7,6 +7,18 @@ var models = [
   {
     name: "Post",
     embedded: false
+  },
+  {
+    name: "Theme",
+    embedded: false
+  },
+  {
+    name: "Colors",
+    embedded: false
+  },
+  {
+    name: "Fonts",
+    embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
@@ -15,9 +27,3 @@ exports.Prisma = prisma_lib_1.makePrismaClientClass({
   endpoint: `https://us1.prisma.sh/public-lightningbat-802/my-app/dev`
 });
 exports.prisma = new exports.Prisma();
-var models = [
-  {
-    name: "Post",
-    embedded: false
-  }
-];

@@ -4,3 +4,26 @@ type Post {
   title: String!
   content: String!
 }
+
+type Theme {
+id: ID! @id
+title: String!
+description: String!
+colors: Colors!
+font: Fonts!
+}
+
+type Colors  {
+  id: ID! @id
+  primaryLight: String!
+  primaryDark: String!
+  accentLight: String!
+  accentDark: String!
+  accentBrand: String!
+}
+
+type Fonts {
+   id: ID! @id
+  primary:  String!
+  secondary:  String!
+}

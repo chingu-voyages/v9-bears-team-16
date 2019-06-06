@@ -12,12 +12,18 @@ const resolvers = {
     post: (parent, { id }, context) => {
       return context.prisma.post({ id })
     },
+    themes: (parent, args, context) => {
+      return context.prisma.themes()
+    },
+    theme: (parent, { id }, context) => {
+      return context.prisma.theme({ id })
+    }
   },
   Mutation: {
     createDraft(parent, { title, content }, context) {
       return context.prisma.createPost({
         title,
-        content,
+        content
       })
     },
     deletePost(parent, { id }, context) {
@@ -26,18 +32,18 @@ const resolvers = {
     publish(parent, { id }, context) {
       return context.prisma.updatePost({
         where: { id },
-        data: { published: true },
+        data: { published: true }
       })
-    },
-  },
+    }
+  }
 }
 
 const server = new GraphQLServer({
   typeDefs: './src/schema.graphql',
   resolvers,
   context: {
-    prisma,
-  },
+    prisma
+  }
 })
 
 server.start(() => console.log('Server is running on http://localhost:4000'))

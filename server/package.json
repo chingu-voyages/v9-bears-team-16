@@ -1,7 +1,9 @@
 {
-  "name": "my-app",
+  "name": "v9-bears-16-server",
   "scripts": {
-    "start": "node src/index.js",
+    "open": "./node_modules/.bin/open-cli http://localhost:4000",
+    "dev": "node src/index.js",
+    "start": "npm run open && npm  run dev",
     "prisma": "prisma"
   },
   "dependencies": {
@@ -9,6 +11,7 @@
     "prisma-client-lib": "1.34.0"
   },
   "devDependencies": {
+    "open-cli": "^5.0.0",
     "prisma": "1.22.1"
   }
 }
