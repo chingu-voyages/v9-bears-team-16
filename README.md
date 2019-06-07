@@ -7,7 +7,7 @@ npm install from within project's root, within client folder, and from withing s
 
 npm run start from project's root to start client and server
 
-deployed graphql server https://us1.prisma.sh/chris-czach-da7404/chingu-v9/dev
+deployed graphql server <https://us1.prisma.sh/chris-czach-da7404/chingu-v9/dev>
 
 server graphql playground : <http://localhost:4000/>
 
