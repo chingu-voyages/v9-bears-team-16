@@ -1,49 +1,29 @@
 const { GraphQLServer } = require('graphql-yoga')
 const { prisma } = require('./generated/prisma-client')
+const { resolvers } = require('./resolvers')
+const typeDefs = './src/schema.graphql'
 
-const resolvers = {
-  Query: {
-    feed: (parent, args, context) => {
-      return context.prisma.posts({ where: { published: true } })
-    },
-    drafts: (parent, args, context) => {
-      return context.prisma.posts({ where: { published: false } })
-    },
-    post: (parent, { id }, context) => {
-      return context.prisma.post({ id })
-    },
-    themes: (parent, args, context) => {
-      return context.prisma.themes()
-    },
-    theme: (parent, { id }, context) => {
-      return context.prisma.theme({ id })
-    }
-  },
-  Mutation: {
-    createDraft(parent, { title, content }, context) {
-      return context.prisma.createPost({
-        title,
-        content
-      })
-    },
-    deletePost(parent, { id }, context) {
-      return context.prisma.deletePost({ id })
-    },
-    publish(parent, { id }, context) {
-      return context.prisma.updatePost({
-        where: { id },
-        data: { published: true }
-      })
-    }
-  }
-}
+/*
+
+To update schema and resolvers:
+
+define types in ./schema.graphql
+
+ update datamodel in ./prisma/datamodel.prisma with updated schema
+
+updates resolver functions in ./resolver.js
+
+ */
+const port = process.env.PORT || 4000
+
 
 const server = new GraphQLServer({
-  typeDefs: './src/schema.graphql',
+  typeDefs,
+  port,
   resolvers,
   context: {
     prisma
   }
 })
 
-server.start(() => console.log('Server is running on http://localhost:4000'))
+server.start(() => console.log(`Server is running on http://localhost:${port}`))
