@@ -3,8 +3,8 @@
   "scripts": {
     "open": "./node_modules/.bin/open-cli http://localhost:4000",
     "dev": "node src/index.js",
-    "generate": "prisma generate",
-    "start": "npm run generate && npm  run dev",
+    "deploy": "prisma deploy",
+    "start": "npm run deploy && npm  run dev",
     "prisma": "prisma"
   },
   "dependencies": {
