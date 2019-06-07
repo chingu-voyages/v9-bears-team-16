@@ -4,6 +4,10 @@ type Query {
   # post(id: ID!): Post
   theme(id: ID!): Theme
   themes: [Theme!]!
+  colorPallete(id: ID!): ColorPallete
+  colorPalletes: [ColorPallete!]!
+  fontPairing(id: ID!): FontPairing
+  fontPairings: [FontPairing!]!
 }
 
 type Mutation {
