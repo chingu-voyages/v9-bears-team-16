@@ -3,15 +3,11 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregateColors {
+/* GraphQL */ `type AggregateColorPallete {
   count: Int!
 }
 
-type AggregateFonts {
-  count: Int!
-}
-
-type AggregatePost {
+type AggregateFontPairing {
   count: Int!
 }
 
@@ -23,8 +19,9 @@ type BatchPayload {
   count: Long!
 }
 
-type Colors {
+type ColorPallete {
   id: ID!
+  title: String
   primaryLight: String!
   primaryDark: String!
   accentLight: String!
@@ -32,14 +29,15 @@ type Colors {
   accentBrand: String!
 }
 
-type ColorsConnection {
+type ColorPalleteConnection {
   pageInfo: PageInfo!
-  edges: [ColorsEdge]!
-  aggregate: AggregateColors!
+  edges: [ColorPalleteEdge]!
+  aggregate: AggregateColorPallete!
 }
 
-input ColorsCreateInput {
+input ColorPalleteCreateInput {
   id: ID
+  title: String
   primaryLight: String!
   primaryDark: String!
   accentLight: String!
@@ -47,19 +45,21 @@ input ColorsCreateInput {
   accentBrand: String!
 }
 
-input ColorsCreateOneInput {
-  create: ColorsCreateInput
-  connect: ColorsWhereUniqueInput
+input ColorPalleteCreateOneInput {
+  create: ColorPalleteCreateInput
+  connect: ColorPalleteWhereUniqueInput
 }
 
-type ColorsEdge {
-  node: Colors!
+type ColorPalleteEdge {
+  node: ColorPallete!
   cursor: String!
 }
 
-enum ColorsOrderByInput {
+enum ColorPalleteOrderByInput {
   id_ASC
   id_DESC
+  title_ASC
+  title_DESC
   primaryLight_ASC
   primaryLight_DESC
   primaryDark_ASC
@@ -72,8 +72,9 @@ enum ColorsOrderByInput {
   accentBrand_DESC
 }
 
-type ColorsPreviousValues {
+type ColorPalletePreviousValues {
   id: ID!
+  title: String
   primaryLight: String!
   primaryDark: String!
   accentLight: String!
@@ -81,25 +82,26 @@ type ColorsPreviousValues {
   accentBrand: String!
 }
 
-type ColorsSubscriptionPayload {
+type ColorPalleteSubscriptionPayload {
   mutation: MutationType!
-  node: Colors
+  node: ColorPallete
   updatedFields: [String!]
-  previousValues: ColorsPreviousValues
+  previousValues: ColorPalletePreviousValues
 }
 
-input ColorsSubscriptionWhereInput {
+input ColorPalleteSubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: ColorsWhereInput
-  AND: [ColorsSubscriptionWhereInput!]
-  OR: [ColorsSubscriptionWhereInput!]
-  NOT: [ColorsSubscriptionWhereInput!]
+  node: ColorPalleteWhereInput
+  AND: [ColorPalleteSubscriptionWhereInput!]
+  OR: [ColorPalleteSubscriptionWhereInput!]
+  NOT: [ColorPalleteSubscriptionWhereInput!]
 }
 
-input ColorsUpdateDataInput {
+input ColorPalleteUpdateDataInput {
+  title: String
   primaryLight: String
   primaryDark: String
   accentLight: String
@@ -107,7 +109,8 @@ input ColorsUpdateDataInput {
   accentBrand: String
 }
 
-input ColorsUpdateInput {
+input ColorPalleteUpdateInput {
+  title: String
   primaryLight: String
   primaryDark: String
   accentLight: String
@@ -115,7 +118,8 @@ input ColorsUpdateInput {
   accentBrand: String
 }
 
-input ColorsUpdateManyMutationInput {
+input ColorPalleteUpdateManyMutationInput {
+  title: String
   primaryLight: String
   primaryDark: String
   accentLight: String
@@ -123,19 +127,19 @@ input ColorsUpdateManyMutationInput {
   accentBrand: String
 }
 
-input ColorsUpdateOneRequiredInput {
-  create: ColorsCreateInput
-  update: ColorsUpdateDataInput
-  upsert: ColorsUpsertNestedInput
-  connect: ColorsWhereUniqueInput
+input ColorPalleteUpdateOneRequiredInput {
+  create: ColorPalleteCreateInput
+  update: ColorPalleteUpdateDataInput
+  upsert: ColorPalleteUpsertNestedInput
+  connect: ColorPalleteWhereUniqueInput
 }
 
-input ColorsUpsertNestedInput {
-  update: ColorsUpdateDataInput!
-  create: ColorsCreateInput!
+input ColorPalleteUpsertNestedInput {
+  update: ColorPalleteUpdateDataInput!
+  create: ColorPalleteCreateInput!
 }
 
-input ColorsWhereInput {
+input ColorPalleteWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -150,6 +154,20 @@ input ColorsWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
   primaryLight: String
   primaryLight_not: String
   primaryLight_in: [String!]
@@ -220,104 +238,112 @@ input ColorsWhereInput {
   accentBrand_not_starts_with: String
   accentBrand_ends_with: String
   accentBrand_not_ends_with: String
-  AND: [ColorsWhereInput!]
-  OR: [ColorsWhereInput!]
-  NOT: [ColorsWhereInput!]
+  AND: [ColorPalleteWhereInput!]
+  OR: [ColorPalleteWhereInput!]
+  NOT: [ColorPalleteWhereInput!]
 }
 
-input ColorsWhereUniqueInput {
+input ColorPalleteWhereUniqueInput {
   id: ID
 }
 
-type Fonts {
+type FontPairing {
   id: ID!
+  title: String
   primary: String!
   secondary: String!
 }
 
-type FontsConnection {
+type FontPairingConnection {
   pageInfo: PageInfo!
-  edges: [FontsEdge]!
-  aggregate: AggregateFonts!
+  edges: [FontPairingEdge]!
+  aggregate: AggregateFontPairing!
 }
 
-input FontsCreateInput {
+input FontPairingCreateInput {
   id: ID
+  title: String
   primary: String!
   secondary: String!
 }
 
-input FontsCreateOneInput {
-  create: FontsCreateInput
-  connect: FontsWhereUniqueInput
+input FontPairingCreateOneInput {
+  create: FontPairingCreateInput
+  connect: FontPairingWhereUniqueInput
 }
 
-type FontsEdge {
-  node: Fonts!
+type FontPairingEdge {
+  node: FontPairing!
   cursor: String!
 }
 
-enum FontsOrderByInput {
+enum FontPairingOrderByInput {
   id_ASC
   id_DESC
+  title_ASC
+  title_DESC
   primary_ASC
   primary_DESC
   secondary_ASC
   secondary_DESC
 }
 
-type FontsPreviousValues {
+type FontPairingPreviousValues {
   id: ID!
+  title: String
   primary: String!
   secondary: String!
 }
 
-type FontsSubscriptionPayload {
+type FontPairingSubscriptionPayload {
   mutation: MutationType!
-  node: Fonts
+  node: FontPairing
   updatedFields: [String!]
-  previousValues: FontsPreviousValues
+  previousValues: FontPairingPreviousValues
 }
 
-input FontsSubscriptionWhereInput {
+input FontPairingSubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: FontsWhereInput
-  AND: [FontsSubscriptionWhereInput!]
-  OR: [FontsSubscriptionWhereInput!]
-  NOT: [FontsSubscriptionWhereInput!]
+  node: FontPairingWhereInput
+  AND: [FontPairingSubscriptionWhereInput!]
+  OR: [FontPairingSubscriptionWhereInput!]
+  NOT: [FontPairingSubscriptionWhereInput!]
 }
 
-input FontsUpdateDataInput {
+input FontPairingUpdateDataInput {
+  title: String
   primary: String
   secondary: String
 }
 
-input FontsUpdateInput {
+input FontPairingUpdateInput {
+  title: String
   primary: String
   secondary: String
 }
 
-input FontsUpdateManyMutationInput {
+input FontPairingUpdateManyMutationInput {
+  title: String
   primary: String
   secondary: String
 }
 
-input FontsUpdateOneRequiredInput {
-  create: FontsCreateInput
-  update: FontsUpdateDataInput
-  upsert: FontsUpsertNestedInput
-  connect: FontsWhereUniqueInput
+input FontPairingUpdateOneRequiredInput {
+  create: FontPairingCreateInput
+  update: FontPairingUpdateDataInput
+  upsert: FontPairingUpsertNestedInput
+  connect: FontPairingWhereUniqueInput
 }
 
-input FontsUpsertNestedInput {
-  update: FontsUpdateDataInput!
-  create: FontsCreateInput!
+input FontPairingUpsertNestedInput {
+  update: FontPairingUpdateDataInput!
+  create: FontPairingCreateInput!
 }
 
-input FontsWhereInput {
+input FontPairingWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -332,6 +358,20 @@ input FontsWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
   primary: String
   primary_not: String
   primary_in: [String!]
@@ -360,36 +400,30 @@ input FontsWhereInput {
   secondary_not_starts_with: String
   secondary_ends_with: String
   secondary_not_ends_with: String
-  AND: [FontsWhereInput!]
-  OR: [FontsWhereInput!]
-  NOT: [FontsWhereInput!]
+  AND: [FontPairingWhereInput!]
+  OR: [FontPairingWhereInput!]
+  NOT: [FontPairingWhereInput!]
 }
 
-input FontsWhereUniqueInput {
+input FontPairingWhereUniqueInput {
   id: ID
 }
 
 scalar Long
 
 type Mutation {
-  createColors(data: ColorsCreateInput!): Colors!
-  updateColors(data: ColorsUpdateInput!, where: ColorsWhereUniqueInput!): Colors
-  updateManyColorses(data: ColorsUpdateManyMutationInput!, where: ColorsWhereInput): BatchPayload!
-  upsertColors(where: ColorsWhereUniqueInput!, create: ColorsCreateInput!, update: ColorsUpdateInput!): Colors!
-  deleteColors(where: ColorsWhereUniqueInput!): Colors
-  deleteManyColorses(where: ColorsWhereInput): BatchPayload!
-  createFonts(data: FontsCreateInput!): Fonts!
-  updateFonts(data: FontsUpdateInput!, where: FontsWhereUniqueInput!): Fonts
-  updateManyFontses(data: FontsUpdateManyMutationInput!, where: FontsWhereInput): BatchPayload!
-  upsertFonts(where: FontsWhereUniqueInput!, create: FontsCreateInput!, update: FontsUpdateInput!): Fonts!
-  deleteFonts(where: FontsWhereUniqueInput!): Fonts
-  deleteManyFontses(where: FontsWhereInput): BatchPayload!
-  createPost(data: PostCreateInput!): Post!
-  updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
-  updateManyPosts(data: PostUpdateManyMutationInput!, where: PostWhereInput): BatchPayload!
-  upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
-  deletePost(where: PostWhereUniqueInput!): Post
-  deleteManyPosts(where: PostWhereInput): BatchPayload!
+  createColorPallete(data: ColorPalleteCreateInput!): ColorPallete!
+  updateColorPallete(data: ColorPalleteUpdateInput!, where: ColorPalleteWhereUniqueInput!): ColorPallete
+  updateManyColorPalletes(data: ColorPalleteUpdateManyMutationInput!, where: ColorPalleteWhereInput): BatchPayload!
+  upsertColorPallete(where: ColorPalleteWhereUniqueInput!, create: ColorPalleteCreateInput!, update: ColorPalleteUpdateInput!): ColorPallete!
+  deleteColorPallete(where: ColorPalleteWhereUniqueInput!): ColorPallete
+  deleteManyColorPalletes(where: ColorPalleteWhereInput): BatchPayload!
+  createFontPairing(data: FontPairingCreateInput!): FontPairing!
+  updateFontPairing(data: FontPairingUpdateInput!, where: FontPairingWhereUniqueInput!): FontPairing
+  updateManyFontPairings(data: FontPairingUpdateManyMutationInput!, where: FontPairingWhereInput): BatchPayload!
+  upsertFontPairing(where: FontPairingWhereUniqueInput!, create: FontPairingCreateInput!, update: FontPairingUpdateInput!): FontPairing!
+  deleteFontPairing(where: FontPairingWhereUniqueInput!): FontPairing
+  deleteManyFontPairings(where: FontPairingWhereInput): BatchPayload!
   createTheme(data: ThemeCreateInput!): Theme!
   updateTheme(data: ThemeUpdateInput!, where: ThemeWhereUniqueInput!): Theme
   updateManyThemes(data: ThemeUpdateManyMutationInput!, where: ThemeWhereInput): BatchPayload!
@@ -415,143 +449,13 @@ type PageInfo {
   endCursor: String
 }
 
-type Post {
-  id: ID!
-  published: Boolean!
-  title: String!
-  content: String!
-}
-
-type PostConnection {
-  pageInfo: PageInfo!
-  edges: [PostEdge]!
-  aggregate: AggregatePost!
-}
-
-input PostCreateInput {
-  id: ID
-  published: Boolean
-  title: String!
-  content: String!
-}
-
-type PostEdge {
-  node: Post!
-  cursor: String!
-}
-
-enum PostOrderByInput {
-  id_ASC
-  id_DESC
-  published_ASC
-  published_DESC
-  title_ASC
-  title_DESC
-  content_ASC
-  content_DESC
-}
-
-type PostPreviousValues {
-  id: ID!
-  published: Boolean!
-  title: String!
-  content: String!
-}
-
-type PostSubscriptionPayload {
-  mutation: MutationType!
-  node: Post
-  updatedFields: [String!]
-  previousValues: PostPreviousValues
-}
-
-input PostSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: PostWhereInput
-  AND: [PostSubscriptionWhereInput!]
-  OR: [PostSubscriptionWhereInput!]
-  NOT: [PostSubscriptionWhereInput!]
-}
-
-input PostUpdateInput {
-  published: Boolean
-  title: String
-  content: String
-}
-
-input PostUpdateManyMutationInput {
-  published: Boolean
-  title: String
-  content: String
-}
-
-input PostWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  published: Boolean
-  published_not: Boolean
-  title: String
-  title_not: String
-  title_in: [String!]
-  title_not_in: [String!]
-  title_lt: String
-  title_lte: String
-  title_gt: String
-  title_gte: String
-  title_contains: String
-  title_not_contains: String
-  title_starts_with: String
-  title_not_starts_with: String
-  title_ends_with: String
-  title_not_ends_with: String
-  content: String
-  content_not: String
-  content_in: [String!]
-  content_not_in: [String!]
-  content_lt: String
-  content_lte: String
-  content_gt: String
-  content_gte: String
-  content_contains: String
-  content_not_contains: String
-  content_starts_with: String
-  content_not_starts_with: String
-  content_ends_with: String
-  content_not_ends_with: String
-  AND: [PostWhereInput!]
-  OR: [PostWhereInput!]
-  NOT: [PostWhereInput!]
-}
-
-input PostWhereUniqueInput {
-  id: ID
-}
-
 type Query {
-  colors(where: ColorsWhereUniqueInput!): Colors
-  colorses(where: ColorsWhereInput, orderBy: ColorsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Colors]!
-  colorsesConnection(where: ColorsWhereInput, orderBy: ColorsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ColorsConnection!
-  fonts(where: FontsWhereUniqueInput!): Fonts
-  fontses(where: FontsWhereInput, orderBy: FontsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Fonts]!
-  fontsesConnection(where: FontsWhereInput, orderBy: FontsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FontsConnection!
-  post(where: PostWhereUniqueInput!): Post
-  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
-  postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
+  colorPallete(where: ColorPalleteWhereUniqueInput!): ColorPallete
+  colorPalletes(where: ColorPalleteWhereInput, orderBy: ColorPalleteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ColorPallete]!
+  colorPalletesConnection(where: ColorPalleteWhereInput, orderBy: ColorPalleteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ColorPalleteConnection!
+  fontPairing(where: FontPairingWhereUniqueInput!): FontPairing
+  fontPairings(where: FontPairingWhereInput, orderBy: FontPairingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [FontPairing]!
+  fontPairingsConnection(where: FontPairingWhereInput, orderBy: FontPairingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FontPairingConnection!
   theme(where: ThemeWhereUniqueInput!): Theme
   themes(where: ThemeWhereInput, orderBy: ThemeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Theme]!
   themesConnection(where: ThemeWhereInput, orderBy: ThemeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ThemeConnection!
@@ -559,9 +463,8 @@ type Query {
 }
 
 type Subscription {
-  colors(where: ColorsSubscriptionWhereInput): ColorsSubscriptionPayload
-  fonts(where: FontsSubscriptionWhereInput): FontsSubscriptionPayload
-  post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
+  colorPallete(where: ColorPalleteSubscriptionWhereInput): ColorPalleteSubscriptionPayload
+  fontPairing(where: FontPairingSubscriptionWhereInput): FontPairingSubscriptionPayload
   theme(where: ThemeSubscriptionWhereInput): ThemeSubscriptionPayload
 }
 
@@ -569,8 +472,8 @@ type Theme {
   id: ID!
   title: String!
   description: String!
-  colors: Colors!
-  font: Fonts!
+  colors: ColorPallete!
+  fonts: FontPairing!
 }
 
 type ThemeConnection {
@@ -583,8 +486,8 @@ input ThemeCreateInput {
   id: ID
   title: String!
   description: String!
-  colors: ColorsCreateOneInput!
-  font: FontsCreateOneInput!
+  colors: ColorPalleteCreateOneInput!
+  fonts: FontPairingCreateOneInput!
 }
 
 type ThemeEdge {
@@ -628,8 +531,8 @@ input ThemeSubscriptionWhereInput {
 input ThemeUpdateInput {
   title: String
   description: String
-  colors: ColorsUpdateOneRequiredInput
-  font: FontsUpdateOneRequiredInput
+  colors: ColorPalleteUpdateOneRequiredInput
+  fonts: FontPairingUpdateOneRequiredInput
 }
 
 input ThemeUpdateManyMutationInput {
@@ -680,8 +583,8 @@ input ThemeWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
-  colors: ColorsWhereInput
-  font: FontsWhereInput
+  colors: ColorPalleteWhereInput
+  fonts: FontPairingWhereInput
   AND: [ThemeWhereInput!]
   OR: [ThemeWhereInput!]
   NOT: [ThemeWhereInput!]

@@ -1,20 +1,14 @@
-type Post {
-  id: ID! @id
-  published: Boolean! @default(value: false)
-  title: String!
-  content: String!
-}
-
 type Theme {
-id: ID! @id
-title: String!
-description: String!
-colors: Colors!
-font: Fonts!
+  id: ID! @id
+  title: String!
+  description: String!
+  colors: ColorPallete!
+  fonts: FontPairing!
 }
 
-type Colors  {
+type ColorPallete {
   id: ID! @id
+  title: String
   primaryLight: String!
   primaryDark: String!
   accentLight: String!
@@ -22,8 +16,9 @@ type Colors  {
   accentBrand: String!
 }
 
-type Fonts {
-   id: ID! @id
-  primary:  String!
-  secondary:  String!
+type FontPairing {
+  id: ID! @id
+  title: String
+  primary: String!
+  secondary: String!
 }

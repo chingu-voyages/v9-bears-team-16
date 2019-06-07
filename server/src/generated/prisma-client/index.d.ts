@@ -16,9 +16,8 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
 export type Maybe<T> = T | undefined | null;
 
 export interface Exists {
-  colors: (where?: ColorsWhereInput) => Promise<boolean>;
-  fonts: (where?: FontsWhereInput) => Promise<boolean>;
-  post: (where?: PostWhereInput) => Promise<boolean>;
+  colorPallete: (where?: ColorPalleteWhereInput) => Promise<boolean>;
+  fontPairing: (where?: FontPairingWhereInput) => Promise<boolean>;
   theme: (where?: ThemeWhereInput) => Promise<boolean>;
 }
 
@@ -41,63 +40,48 @@ export interface Prisma {
    * Queries
    */
 
-  colors: (where: ColorsWhereUniqueInput) => ColorsNullablePromise;
-  colorses: (args?: {
-    where?: ColorsWhereInput;
-    orderBy?: ColorsOrderByInput;
+  colorPallete: (
+    where: ColorPalleteWhereUniqueInput
+  ) => ColorPalleteNullablePromise;
+  colorPalletes: (args?: {
+    where?: ColorPalleteWhereInput;
+    orderBy?: ColorPalleteOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
     first?: Int;
     last?: Int;
-  }) => FragmentableArray<Colors>;
-  colorsesConnection: (args?: {
-    where?: ColorsWhereInput;
-    orderBy?: ColorsOrderByInput;
+  }) => FragmentableArray<ColorPallete>;
+  colorPalletesConnection: (args?: {
+    where?: ColorPalleteWhereInput;
+    orderBy?: ColorPalleteOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
     first?: Int;
     last?: Int;
-  }) => ColorsConnectionPromise;
-  fonts: (where: FontsWhereUniqueInput) => FontsNullablePromise;
-  fontses: (args?: {
-    where?: FontsWhereInput;
-    orderBy?: FontsOrderByInput;
+  }) => ColorPalleteConnectionPromise;
+  fontPairing: (
+    where: FontPairingWhereUniqueInput
+  ) => FontPairingNullablePromise;
+  fontPairings: (args?: {
+    where?: FontPairingWhereInput;
+    orderBy?: FontPairingOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
     first?: Int;
     last?: Int;
-  }) => FragmentableArray<Fonts>;
-  fontsesConnection: (args?: {
-    where?: FontsWhereInput;
-    orderBy?: FontsOrderByInput;
+  }) => FragmentableArray<FontPairing>;
+  fontPairingsConnection: (args?: {
+    where?: FontPairingWhereInput;
+    orderBy?: FontPairingOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
     first?: Int;
     last?: Int;
-  }) => FontsConnectionPromise;
-  post: (where: PostWhereUniqueInput) => PostNullablePromise;
-  posts: (args?: {
-    where?: PostWhereInput;
-    orderBy?: PostOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<Post>;
-  postsConnection: (args?: {
-    where?: PostWhereInput;
-    orderBy?: PostOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => PostConnectionPromise;
+  }) => FontPairingConnectionPromise;
   theme: (where: ThemeWhereUniqueInput) => ThemeNullablePromise;
   themes: (args?: {
     where?: ThemeWhereInput;
@@ -123,54 +107,44 @@ export interface Prisma {
    * Mutations
    */
 
-  createColors: (data: ColorsCreateInput) => ColorsPromise;
-  updateColors: (args: {
-    data: ColorsUpdateInput;
-    where: ColorsWhereUniqueInput;
-  }) => ColorsPromise;
-  updateManyColorses: (args: {
-    data: ColorsUpdateManyMutationInput;
-    where?: ColorsWhereInput;
+  createColorPallete: (data: ColorPalleteCreateInput) => ColorPalletePromise;
+  updateColorPallete: (args: {
+    data: ColorPalleteUpdateInput;
+    where: ColorPalleteWhereUniqueInput;
+  }) => ColorPalletePromise;
+  updateManyColorPalletes: (args: {
+    data: ColorPalleteUpdateManyMutationInput;
+    where?: ColorPalleteWhereInput;
   }) => BatchPayloadPromise;
-  upsertColors: (args: {
-    where: ColorsWhereUniqueInput;
-    create: ColorsCreateInput;
-    update: ColorsUpdateInput;
-  }) => ColorsPromise;
-  deleteColors: (where: ColorsWhereUniqueInput) => ColorsPromise;
-  deleteManyColorses: (where?: ColorsWhereInput) => BatchPayloadPromise;
-  createFonts: (data: FontsCreateInput) => FontsPromise;
-  updateFonts: (args: {
-    data: FontsUpdateInput;
-    where: FontsWhereUniqueInput;
-  }) => FontsPromise;
-  updateManyFontses: (args: {
-    data: FontsUpdateManyMutationInput;
-    where?: FontsWhereInput;
+  upsertColorPallete: (args: {
+    where: ColorPalleteWhereUniqueInput;
+    create: ColorPalleteCreateInput;
+    update: ColorPalleteUpdateInput;
+  }) => ColorPalletePromise;
+  deleteColorPallete: (
+    where: ColorPalleteWhereUniqueInput
+  ) => ColorPalletePromise;
+  deleteManyColorPalletes: (
+    where?: ColorPalleteWhereInput
+  ) => BatchPayloadPromise;
+  createFontPairing: (data: FontPairingCreateInput) => FontPairingPromise;
+  updateFontPairing: (args: {
+    data: FontPairingUpdateInput;
+    where: FontPairingWhereUniqueInput;
+  }) => FontPairingPromise;
+  updateManyFontPairings: (args: {
+    data: FontPairingUpdateManyMutationInput;
+    where?: FontPairingWhereInput;
   }) => BatchPayloadPromise;
-  upsertFonts: (args: {
-    where: FontsWhereUniqueInput;
-    create: FontsCreateInput;
-    update: FontsUpdateInput;
-  }) => FontsPromise;
-  deleteFonts: (where: FontsWhereUniqueInput) => FontsPromise;
-  deleteManyFontses: (where?: FontsWhereInput) => BatchPayloadPromise;
-  createPost: (data: PostCreateInput) => PostPromise;
-  updatePost: (args: {
-    data: PostUpdateInput;
-    where: PostWhereUniqueInput;
-  }) => PostPromise;
-  updateManyPosts: (args: {
-    data: PostUpdateManyMutationInput;
-    where?: PostWhereInput;
-  }) => BatchPayloadPromise;
-  upsertPost: (args: {
-    where: PostWhereUniqueInput;
-    create: PostCreateInput;
-    update: PostUpdateInput;
-  }) => PostPromise;
-  deletePost: (where: PostWhereUniqueInput) => PostPromise;
-  deleteManyPosts: (where?: PostWhereInput) => BatchPayloadPromise;
+  upsertFontPairing: (args: {
+    where: FontPairingWhereUniqueInput;
+    create: FontPairingCreateInput;
+    update: FontPairingUpdateInput;
+  }) => FontPairingPromise;
+  deleteFontPairing: (where: FontPairingWhereUniqueInput) => FontPairingPromise;
+  deleteManyFontPairings: (
+    where?: FontPairingWhereInput
+  ) => BatchPayloadPromise;
   createTheme: (data: ThemeCreateInput) => ThemePromise;
   updateTheme: (args: {
     data: ThemeUpdateInput;
@@ -196,15 +170,12 @@ export interface Prisma {
 }
 
 export interface Subscription {
-  colors: (
-    where?: ColorsSubscriptionWhereInput
-  ) => ColorsSubscriptionPayloadSubscription;
-  fonts: (
-    where?: FontsSubscriptionWhereInput
-  ) => FontsSubscriptionPayloadSubscription;
-  post: (
-    where?: PostSubscriptionWhereInput
-  ) => PostSubscriptionPayloadSubscription;
+  colorPallete: (
+    where?: ColorPalleteSubscriptionWhereInput
+  ) => ColorPalleteSubscriptionPayloadSubscription;
+  fontPairing: (
+    where?: FontPairingSubscriptionWhereInput
+  ) => FontPairingSubscriptionPayloadSubscription;
   theme: (
     where?: ThemeSubscriptionWhereInput
   ) => ThemeSubscriptionPayloadSubscription;
@@ -218,17 +189,11 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type FontsOrderByInput =
+export type ColorPalleteOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "primary_ASC"
-  | "primary_DESC"
-  | "secondary_ASC"
-  | "secondary_DESC";
-
-export type ColorsOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
+  | "title_ASC"
+  | "title_DESC"
   | "primaryLight_ASC"
   | "primaryLight_DESC"
   | "primaryDark_ASC"
@@ -240,15 +205,15 @@ export type ColorsOrderByInput =
   | "accentBrand_ASC"
   | "accentBrand_DESC";
 
-export type PostOrderByInput =
+export type FontPairingOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "published_ASC"
-  | "published_DESC"
   | "title_ASC"
   | "title_DESC"
-  | "content_ASC"
-  | "content_DESC";
+  | "primary_ASC"
+  | "primary_DESC"
+  | "secondary_ASC"
+  | "secondary_DESC";
 
 export type ThemeOrderByInput =
   | "id_ASC"
@@ -260,109 +225,33 @@ export type ThemeOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface ColorsCreateInput {
-  id?: Maybe<ID_Input>;
-  primaryLight: String;
-  primaryDark: String;
-  accentLight: String;
-  accentDark: String;
-  accentBrand: String;
+export interface ColorPalleteUpdateInput {
+  title?: Maybe<String>;
+  primaryLight?: Maybe<String>;
+  primaryDark?: Maybe<String>;
+  accentLight?: Maybe<String>;
+  accentDark?: Maybe<String>;
+  accentBrand?: Maybe<String>;
 }
 
-export type ColorsWhereUniqueInput = AtLeastOne<{
+export type ColorPalleteWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface ColorsUpdateOneRequiredInput {
-  create?: Maybe<ColorsCreateInput>;
-  update?: Maybe<ColorsUpdateDataInput>;
-  upsert?: Maybe<ColorsUpsertNestedInput>;
-  connect?: Maybe<ColorsWhereUniqueInput>;
+export interface ColorPalleteUpdateDataInput {
+  title?: Maybe<String>;
+  primaryLight?: Maybe<String>;
+  primaryDark?: Maybe<String>;
+  accentLight?: Maybe<String>;
+  accentDark?: Maybe<String>;
+  accentBrand?: Maybe<String>;
 }
 
-export interface FontsCreateInput {
+export interface FontPairingCreateInput {
   id?: Maybe<ID_Input>;
+  title?: Maybe<String>;
   primary: String;
   secondary: String;
-}
-
-export interface ThemeUpdateInput {
-  title?: Maybe<String>;
-  description?: Maybe<String>;
-  colors?: Maybe<ColorsUpdateOneRequiredInput>;
-  font?: Maybe<FontsUpdateOneRequiredInput>;
-}
-
-export interface PostSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<PostWhereInput>;
-  AND?: Maybe<PostSubscriptionWhereInput[] | PostSubscriptionWhereInput>;
-  OR?: Maybe<PostSubscriptionWhereInput[] | PostSubscriptionWhereInput>;
-  NOT?: Maybe<PostSubscriptionWhereInput[] | PostSubscriptionWhereInput>;
-}
-
-export type ThemeWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export type FontsWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface FontsCreateOneInput {
-  create?: Maybe<FontsCreateInput>;
-  connect?: Maybe<FontsWhereUniqueInput>;
-}
-
-export interface FontsWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  primary?: Maybe<String>;
-  primary_not?: Maybe<String>;
-  primary_in?: Maybe<String[] | String>;
-  primary_not_in?: Maybe<String[] | String>;
-  primary_lt?: Maybe<String>;
-  primary_lte?: Maybe<String>;
-  primary_gt?: Maybe<String>;
-  primary_gte?: Maybe<String>;
-  primary_contains?: Maybe<String>;
-  primary_not_contains?: Maybe<String>;
-  primary_starts_with?: Maybe<String>;
-  primary_not_starts_with?: Maybe<String>;
-  primary_ends_with?: Maybe<String>;
-  primary_not_ends_with?: Maybe<String>;
-  secondary?: Maybe<String>;
-  secondary_not?: Maybe<String>;
-  secondary_in?: Maybe<String[] | String>;
-  secondary_not_in?: Maybe<String[] | String>;
-  secondary_lt?: Maybe<String>;
-  secondary_lte?: Maybe<String>;
-  secondary_gt?: Maybe<String>;
-  secondary_gte?: Maybe<String>;
-  secondary_contains?: Maybe<String>;
-  secondary_not_contains?: Maybe<String>;
-  secondary_starts_with?: Maybe<String>;
-  secondary_not_starts_with?: Maybe<String>;
-  secondary_ends_with?: Maybe<String>;
-  secondary_not_ends_with?: Maybe<String>;
-  AND?: Maybe<FontsWhereInput[] | FontsWhereInput>;
-  OR?: Maybe<FontsWhereInput[] | FontsWhereInput>;
-  NOT?: Maybe<FontsWhereInput[] | FontsWhereInput>;
 }
 
 export interface ThemeWhereInput {
@@ -408,50 +297,69 @@ export interface ThemeWhereInput {
   description_not_starts_with?: Maybe<String>;
   description_ends_with?: Maybe<String>;
   description_not_ends_with?: Maybe<String>;
-  colors?: Maybe<ColorsWhereInput>;
-  font?: Maybe<FontsWhereInput>;
+  colors?: Maybe<ColorPalleteWhereInput>;
+  fonts?: Maybe<FontPairingWhereInput>;
   AND?: Maybe<ThemeWhereInput[] | ThemeWhereInput>;
   OR?: Maybe<ThemeWhereInput[] | ThemeWhereInput>;
   NOT?: Maybe<ThemeWhereInput[] | ThemeWhereInput>;
 }
 
-export interface FontsUpsertNestedInput {
-  update: FontsUpdateDataInput;
-  create: FontsCreateInput;
-}
-
-export interface ColorsCreateOneInput {
-  create?: Maybe<ColorsCreateInput>;
-  connect?: Maybe<ColorsWhereUniqueInput>;
-}
-
-export interface FontsUpdateOneRequiredInput {
-  create?: Maybe<FontsCreateInput>;
-  update?: Maybe<FontsUpdateDataInput>;
-  upsert?: Maybe<FontsUpsertNestedInput>;
-  connect?: Maybe<FontsWhereUniqueInput>;
-}
-
-export interface ThemeCreateInput {
-  id?: Maybe<ID_Input>;
-  title: String;
-  description: String;
-  colors: ColorsCreateOneInput;
-  font: FontsCreateOneInput;
-}
-
-export interface ColorsUpsertNestedInput {
-  update: ColorsUpdateDataInput;
-  create: ColorsCreateInput;
-}
-
-export interface PostUpdateManyMutationInput {
-  published?: Maybe<Boolean>;
+export interface ColorPalleteUpdateManyMutationInput {
   title?: Maybe<String>;
-  content?: Maybe<String>;
+  primaryLight?: Maybe<String>;
+  primaryDark?: Maybe<String>;
+  accentLight?: Maybe<String>;
+  accentDark?: Maybe<String>;
+  accentBrand?: Maybe<String>;
 }
 
-export interface ColorsWhereInput {
+export interface ThemeSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ThemeWhereInput>;
+  AND?: Maybe<ThemeSubscriptionWhereInput[] | ThemeSubscriptionWhereInput>;
+  OR?: Maybe<ThemeSubscriptionWhereInput[] | ThemeSubscriptionWhereInput>;
+  NOT?: Maybe<ThemeSubscriptionWhereInput[] | ThemeSubscriptionWhereInput>;
+}
+
+export interface ColorPalleteSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ColorPalleteWhereInput>;
+  AND?: Maybe<
+    ColorPalleteSubscriptionWhereInput[] | ColorPalleteSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    ColorPalleteSubscriptionWhereInput[] | ColorPalleteSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    ColorPalleteSubscriptionWhereInput[] | ColorPalleteSubscriptionWhereInput
+  >;
+}
+
+export interface ColorPalleteUpdateOneRequiredInput {
+  create?: Maybe<ColorPalleteCreateInput>;
+  update?: Maybe<ColorPalleteUpdateDataInput>;
+  upsert?: Maybe<ColorPalleteUpsertNestedInput>;
+  connect?: Maybe<ColorPalleteWhereUniqueInput>;
+}
+
+export type FontPairingWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface ThemeUpdateInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  colors?: Maybe<ColorPalleteUpdateOneRequiredInput>;
+  fonts?: Maybe<FontPairingUpdateOneRequiredInput>;
+}
+
+export interface FontPairingWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -466,6 +374,155 @@ export interface ColorsWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  primary?: Maybe<String>;
+  primary_not?: Maybe<String>;
+  primary_in?: Maybe<String[] | String>;
+  primary_not_in?: Maybe<String[] | String>;
+  primary_lt?: Maybe<String>;
+  primary_lte?: Maybe<String>;
+  primary_gt?: Maybe<String>;
+  primary_gte?: Maybe<String>;
+  primary_contains?: Maybe<String>;
+  primary_not_contains?: Maybe<String>;
+  primary_starts_with?: Maybe<String>;
+  primary_not_starts_with?: Maybe<String>;
+  primary_ends_with?: Maybe<String>;
+  primary_not_ends_with?: Maybe<String>;
+  secondary?: Maybe<String>;
+  secondary_not?: Maybe<String>;
+  secondary_in?: Maybe<String[] | String>;
+  secondary_not_in?: Maybe<String[] | String>;
+  secondary_lt?: Maybe<String>;
+  secondary_lte?: Maybe<String>;
+  secondary_gt?: Maybe<String>;
+  secondary_gte?: Maybe<String>;
+  secondary_contains?: Maybe<String>;
+  secondary_not_contains?: Maybe<String>;
+  secondary_starts_with?: Maybe<String>;
+  secondary_not_starts_with?: Maybe<String>;
+  secondary_ends_with?: Maybe<String>;
+  secondary_not_ends_with?: Maybe<String>;
+  AND?: Maybe<FontPairingWhereInput[] | FontPairingWhereInput>;
+  OR?: Maybe<FontPairingWhereInput[] | FontPairingWhereInput>;
+  NOT?: Maybe<FontPairingWhereInput[] | FontPairingWhereInput>;
+}
+
+export interface FontPairingCreateOneInput {
+  create?: Maybe<FontPairingCreateInput>;
+  connect?: Maybe<FontPairingWhereUniqueInput>;
+}
+
+export interface FontPairingUpdateDataInput {
+  title?: Maybe<String>;
+  primary?: Maybe<String>;
+  secondary?: Maybe<String>;
+}
+
+export interface ColorPalleteUpsertNestedInput {
+  update: ColorPalleteUpdateDataInput;
+  create: ColorPalleteCreateInput;
+}
+
+export interface FontPairingSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<FontPairingWhereInput>;
+  AND?: Maybe<
+    FontPairingSubscriptionWhereInput[] | FontPairingSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    FontPairingSubscriptionWhereInput[] | FontPairingSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    FontPairingSubscriptionWhereInput[] | FontPairingSubscriptionWhereInput
+  >;
+}
+
+export interface ColorPalleteCreateInput {
+  id?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  primaryLight: String;
+  primaryDark: String;
+  accentLight: String;
+  accentDark: String;
+  accentBrand: String;
+}
+
+export interface FontPairingUpsertNestedInput {
+  update: FontPairingUpdateDataInput;
+  create: FontPairingCreateInput;
+}
+
+export interface FontPairingUpdateInput {
+  title?: Maybe<String>;
+  primary?: Maybe<String>;
+  secondary?: Maybe<String>;
+}
+
+export interface FontPairingUpdateManyMutationInput {
+  title?: Maybe<String>;
+  primary?: Maybe<String>;
+  secondary?: Maybe<String>;
+}
+
+export interface ThemeCreateInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  description: String;
+  colors: ColorPalleteCreateOneInput;
+  fonts: FontPairingCreateOneInput;
+}
+
+export interface ColorPalleteCreateOneInput {
+  create?: Maybe<ColorPalleteCreateInput>;
+  connect?: Maybe<ColorPalleteWhereUniqueInput>;
+}
+
+export interface ColorPalleteWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
   primaryLight?: Maybe<String>;
   primaryLight_not?: Maybe<String>;
   primaryLight_in?: Maybe<String[] | String>;
@@ -536,26 +593,9 @@ export interface ColorsWhereInput {
   accentBrand_not_starts_with?: Maybe<String>;
   accentBrand_ends_with?: Maybe<String>;
   accentBrand_not_ends_with?: Maybe<String>;
-  AND?: Maybe<ColorsWhereInput[] | ColorsWhereInput>;
-  OR?: Maybe<ColorsWhereInput[] | ColorsWhereInput>;
-  NOT?: Maybe<ColorsWhereInput[] | ColorsWhereInput>;
-}
-
-export interface PostUpdateInput {
-  published?: Maybe<Boolean>;
-  title?: Maybe<String>;
-  content?: Maybe<String>;
-}
-
-export interface ThemeSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<ThemeWhereInput>;
-  AND?: Maybe<ThemeSubscriptionWhereInput[] | ThemeSubscriptionWhereInput>;
-  OR?: Maybe<ThemeSubscriptionWhereInput[] | ThemeSubscriptionWhereInput>;
-  NOT?: Maybe<ThemeSubscriptionWhereInput[] | ThemeSubscriptionWhereInput>;
+  AND?: Maybe<ColorPalleteWhereInput[] | ColorPalleteWhereInput>;
+  OR?: Maybe<ColorPalleteWhereInput[] | ColorPalleteWhereInput>;
+  NOT?: Maybe<ColorPalleteWhereInput[] | ColorPalleteWhereInput>;
 }
 
 export interface ThemeUpdateManyMutationInput {
@@ -563,130 +603,63 @@ export interface ThemeUpdateManyMutationInput {
   description?: Maybe<String>;
 }
 
-export interface FontsUpdateInput {
-  primary?: Maybe<String>;
-  secondary?: Maybe<String>;
-}
-
-export interface ColorsSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<ColorsWhereInput>;
-  AND?: Maybe<ColorsSubscriptionWhereInput[] | ColorsSubscriptionWhereInput>;
-  OR?: Maybe<ColorsSubscriptionWhereInput[] | ColorsSubscriptionWhereInput>;
-  NOT?: Maybe<ColorsSubscriptionWhereInput[] | ColorsSubscriptionWhereInput>;
-}
-
-export interface FontsUpdateManyMutationInput {
-  primary?: Maybe<String>;
-  secondary?: Maybe<String>;
-}
-
-export interface ColorsUpdateManyMutationInput {
-  primaryLight?: Maybe<String>;
-  primaryDark?: Maybe<String>;
-  accentLight?: Maybe<String>;
-  accentDark?: Maybe<String>;
-  accentBrand?: Maybe<String>;
-}
-
-export interface ColorsUpdateInput {
-  primaryLight?: Maybe<String>;
-  primaryDark?: Maybe<String>;
-  accentLight?: Maybe<String>;
-  accentDark?: Maybe<String>;
-  accentBrand?: Maybe<String>;
-}
-
-export interface PostCreateInput {
-  id?: Maybe<ID_Input>;
-  published?: Maybe<Boolean>;
-  title: String;
-  content: String;
-}
-
-export interface FontsUpdateDataInput {
-  primary?: Maybe<String>;
-  secondary?: Maybe<String>;
-}
-
-export interface FontsSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<FontsWhereInput>;
-  AND?: Maybe<FontsSubscriptionWhereInput[] | FontsSubscriptionWhereInput>;
-  OR?: Maybe<FontsSubscriptionWhereInput[] | FontsSubscriptionWhereInput>;
-  NOT?: Maybe<FontsSubscriptionWhereInput[] | FontsSubscriptionWhereInput>;
-}
-
-export interface ColorsUpdateDataInput {
-  primaryLight?: Maybe<String>;
-  primaryDark?: Maybe<String>;
-  accentLight?: Maybe<String>;
-  accentDark?: Maybe<String>;
-  accentBrand?: Maybe<String>;
-}
-
-export interface PostWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  published?: Maybe<Boolean>;
-  published_not?: Maybe<Boolean>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  content?: Maybe<String>;
-  content_not?: Maybe<String>;
-  content_in?: Maybe<String[] | String>;
-  content_not_in?: Maybe<String[] | String>;
-  content_lt?: Maybe<String>;
-  content_lte?: Maybe<String>;
-  content_gt?: Maybe<String>;
-  content_gte?: Maybe<String>;
-  content_contains?: Maybe<String>;
-  content_not_contains?: Maybe<String>;
-  content_starts_with?: Maybe<String>;
-  content_not_starts_with?: Maybe<String>;
-  content_ends_with?: Maybe<String>;
-  content_not_ends_with?: Maybe<String>;
-  AND?: Maybe<PostWhereInput[] | PostWhereInput>;
-  OR?: Maybe<PostWhereInput[] | PostWhereInput>;
-  NOT?: Maybe<PostWhereInput[] | PostWhereInput>;
-}
-
-export type PostWhereUniqueInput = AtLeastOne<{
+export type ThemeWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
+export interface FontPairingUpdateOneRequiredInput {
+  create?: Maybe<FontPairingCreateInput>;
+  update?: Maybe<FontPairingUpdateDataInput>;
+  upsert?: Maybe<FontPairingUpsertNestedInput>;
+  connect?: Maybe<FontPairingWhereUniqueInput>;
+}
+
 export interface NodeNode {
   id: ID_Output;
+}
+
+export interface FontPairingSubscriptionPayload {
+  mutation: MutationType;
+  node: FontPairing;
+  updatedFields: String[];
+  previousValues: FontPairingPreviousValues;
+}
+
+export interface FontPairingSubscriptionPayloadPromise
+  extends Promise<FontPairingSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = FontPairingPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = FontPairingPreviousValuesPromise>() => T;
+}
+
+export interface FontPairingSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<FontPairingSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = FontPairingSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = FontPairingPreviousValuesSubscription>() => T;
+}
+
+export interface FontPairingEdge {
+  node: FontPairing;
+  cursor: String;
+}
+
+export interface FontPairingEdgePromise
+  extends Promise<FontPairingEdge>,
+    Fragmentable {
+  node: <T = FontPairingPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface FontPairingEdgeSubscription
+  extends Promise<AsyncIterator<FontPairingEdge>>,
+    Fragmentable {
+  node: <T = FontPairingSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface ThemePreviousValues {
@@ -711,46 +684,78 @@ export interface ThemePreviousValuesSubscription
   description: () => Promise<AsyncIterator<String>>;
 }
 
-export interface ColorsConnection {
+export interface FontPairingConnection {
   pageInfo: PageInfo;
-  edges: ColorsEdge[];
+  edges: FontPairingEdge[];
 }
 
-export interface ColorsConnectionPromise
-  extends Promise<ColorsConnection>,
+export interface FontPairingConnectionPromise
+  extends Promise<FontPairingConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<ColorsEdge>>() => T;
-  aggregate: <T = AggregateColorsPromise>() => T;
+  edges: <T = FragmentableArray<FontPairingEdge>>() => T;
+  aggregate: <T = AggregateFontPairingPromise>() => T;
 }
 
-export interface ColorsConnectionSubscription
-  extends Promise<AsyncIterator<ColorsConnection>>,
+export interface FontPairingConnectionSubscription
+  extends Promise<AsyncIterator<FontPairingConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<ColorsEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateColorsSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<FontPairingEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateFontPairingSubscription>() => T;
 }
 
-export interface FontsConnection {
+export interface ColorPalleteConnection {
   pageInfo: PageInfo;
-  edges: FontsEdge[];
+  edges: ColorPalleteEdge[];
 }
 
-export interface FontsConnectionPromise
-  extends Promise<FontsConnection>,
+export interface ColorPalleteConnectionPromise
+  extends Promise<ColorPalleteConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<FontsEdge>>() => T;
-  aggregate: <T = AggregateFontsPromise>() => T;
+  edges: <T = FragmentableArray<ColorPalleteEdge>>() => T;
+  aggregate: <T = AggregateColorPalletePromise>() => T;
 }
 
-export interface FontsConnectionSubscription
-  extends Promise<AsyncIterator<FontsConnection>>,
+export interface ColorPalleteConnectionSubscription
+  extends Promise<AsyncIterator<ColorPalleteConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<FontsEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateFontsSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ColorPalleteEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateColorPalleteSubscription>() => T;
+}
+
+export interface FontPairing {
+  id: ID_Output;
+  title?: String;
+  primary: String;
+  secondary: String;
+}
+
+export interface FontPairingPromise extends Promise<FontPairing>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  primary: () => Promise<String>;
+  secondary: () => Promise<String>;
+}
+
+export interface FontPairingSubscription
+  extends Promise<AsyncIterator<FontPairing>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  primary: () => Promise<AsyncIterator<String>>;
+  secondary: () => Promise<AsyncIterator<String>>;
+}
+
+export interface FontPairingNullablePromise
+  extends Promise<FontPairing | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  primary: () => Promise<String>;
+  secondary: () => Promise<String>;
 }
 
 export interface PageInfo {
@@ -776,45 +781,20 @@ export interface PageInfoSubscription
   endCursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface BatchPayload {
-  count: Long;
+export interface AggregateColorPallete {
+  count: Int;
 }
 
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
+export interface AggregateColorPalletePromise
+  extends Promise<AggregateColorPallete>,
     Fragmentable {
-  count: () => Promise<Long>;
+  count: () => Promise<Int>;
 }
 
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
+export interface AggregateColorPalleteSubscription
+  extends Promise<AsyncIterator<AggregateColorPallete>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface PostPreviousValues {
-  id: ID_Output;
-  published: Boolean;
-  title: String;
-  content: String;
-}
-
-export interface PostPreviousValuesPromise
-  extends Promise<PostPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  published: () => Promise<Boolean>;
-  title: () => Promise<String>;
-  content: () => Promise<String>;
-}
-
-export interface PostPreviousValuesSubscription
-  extends Promise<AsyncIterator<PostPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  published: () => Promise<AsyncIterator<Boolean>>;
-  title: () => Promise<AsyncIterator<String>>;
-  content: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface AggregateTheme {
@@ -831,6 +811,25 @@ export interface AggregateThemeSubscription
   extends Promise<AsyncIterator<AggregateTheme>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ColorPalleteEdge {
+  node: ColorPallete;
+  cursor: String;
+}
+
+export interface ColorPalleteEdgePromise
+  extends Promise<ColorPalleteEdge>,
+    Fragmentable {
+  node: <T = ColorPalletePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ColorPalleteEdgeSubscription
+  extends Promise<AsyncIterator<ColorPalleteEdge>>,
+    Fragmentable {
+  node: <T = ColorPalleteSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface ThemeConnection {
@@ -854,242 +853,18 @@ export interface ThemeConnectionSubscription
   aggregate: <T = AggregateThemeSubscription>() => T;
 }
 
-export interface Fonts {
-  id: ID_Output;
-  primary: String;
-  secondary: String;
-}
-
-export interface FontsPromise extends Promise<Fonts>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  primary: () => Promise<String>;
-  secondary: () => Promise<String>;
-}
-
-export interface FontsSubscription
-  extends Promise<AsyncIterator<Fonts>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  primary: () => Promise<AsyncIterator<String>>;
-  secondary: () => Promise<AsyncIterator<String>>;
-}
-
-export interface FontsNullablePromise
-  extends Promise<Fonts | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  primary: () => Promise<String>;
-  secondary: () => Promise<String>;
-}
-
-export interface Theme {
-  id: ID_Output;
-  title: String;
-  description: String;
-}
-
-export interface ThemePromise extends Promise<Theme>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  description: () => Promise<String>;
-  colors: <T = ColorsPromise>() => T;
-  font: <T = FontsPromise>() => T;
-}
-
-export interface ThemeSubscription
-  extends Promise<AsyncIterator<Theme>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-  description: () => Promise<AsyncIterator<String>>;
-  colors: <T = ColorsSubscription>() => T;
-  font: <T = FontsSubscription>() => T;
-}
-
-export interface ThemeNullablePromise
-  extends Promise<Theme | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  description: () => Promise<String>;
-  colors: <T = ColorsPromise>() => T;
-  font: <T = FontsPromise>() => T;
-}
-
-export interface Colors {
-  id: ID_Output;
-  primaryLight: String;
-  primaryDark: String;
-  accentLight: String;
-  accentDark: String;
-  accentBrand: String;
-}
-
-export interface ColorsPromise extends Promise<Colors>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  primaryLight: () => Promise<String>;
-  primaryDark: () => Promise<String>;
-  accentLight: () => Promise<String>;
-  accentDark: () => Promise<String>;
-  accentBrand: () => Promise<String>;
-}
-
-export interface ColorsSubscription
-  extends Promise<AsyncIterator<Colors>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  primaryLight: () => Promise<AsyncIterator<String>>;
-  primaryDark: () => Promise<AsyncIterator<String>>;
-  accentLight: () => Promise<AsyncIterator<String>>;
-  accentDark: () => Promise<AsyncIterator<String>>;
-  accentBrand: () => Promise<AsyncIterator<String>>;
-}
-
-export interface ColorsNullablePromise
-  extends Promise<Colors | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  primaryLight: () => Promise<String>;
-  primaryDark: () => Promise<String>;
-  accentLight: () => Promise<String>;
-  accentDark: () => Promise<String>;
-  accentBrand: () => Promise<String>;
-}
-
-export interface PostEdge {
-  node: Post;
-  cursor: String;
-}
-
-export interface PostEdgePromise extends Promise<PostEdge>, Fragmentable {
-  node: <T = PostPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface PostEdgeSubscription
-  extends Promise<AsyncIterator<PostEdge>>,
-    Fragmentable {
-  node: <T = PostSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface ColorsSubscriptionPayload {
-  mutation: MutationType;
-  node: Colors;
-  updatedFields: String[];
-  previousValues: ColorsPreviousValues;
-}
-
-export interface ColorsSubscriptionPayloadPromise
-  extends Promise<ColorsSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = ColorsPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = ColorsPreviousValuesPromise>() => T;
-}
-
-export interface ColorsSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<ColorsSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = ColorsSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = ColorsPreviousValuesSubscription>() => T;
-}
-
-export interface Post {
-  id: ID_Output;
-  published: Boolean;
-  title: String;
-  content: String;
-}
-
-export interface PostPromise extends Promise<Post>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  published: () => Promise<Boolean>;
-  title: () => Promise<String>;
-  content: () => Promise<String>;
-}
-
-export interface PostSubscription
-  extends Promise<AsyncIterator<Post>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  published: () => Promise<AsyncIterator<Boolean>>;
-  title: () => Promise<AsyncIterator<String>>;
-  content: () => Promise<AsyncIterator<String>>;
-}
-
-export interface PostNullablePromise
-  extends Promise<Post | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  published: () => Promise<Boolean>;
-  title: () => Promise<String>;
-  content: () => Promise<String>;
-}
-
-export interface ColorsPreviousValues {
-  id: ID_Output;
-  primaryLight: String;
-  primaryDark: String;
-  accentLight: String;
-  accentDark: String;
-  accentBrand: String;
-}
-
-export interface ColorsPreviousValuesPromise
-  extends Promise<ColorsPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  primaryLight: () => Promise<String>;
-  primaryDark: () => Promise<String>;
-  accentLight: () => Promise<String>;
-  accentDark: () => Promise<String>;
-  accentBrand: () => Promise<String>;
-}
-
-export interface ColorsPreviousValuesSubscription
-  extends Promise<AsyncIterator<ColorsPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  primaryLight: () => Promise<AsyncIterator<String>>;
-  primaryDark: () => Promise<AsyncIterator<String>>;
-  accentLight: () => Promise<AsyncIterator<String>>;
-  accentDark: () => Promise<AsyncIterator<String>>;
-  accentBrand: () => Promise<AsyncIterator<String>>;
-}
-
-export interface FontsEdge {
-  node: Fonts;
-  cursor: String;
-}
-
-export interface FontsEdgePromise extends Promise<FontsEdge>, Fragmentable {
-  node: <T = FontsPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface FontsEdgeSubscription
-  extends Promise<AsyncIterator<FontsEdge>>,
-    Fragmentable {
-  node: <T = FontsSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateColors {
+export interface AggregateFontPairing {
   count: Int;
 }
 
-export interface AggregateColorsPromise
-  extends Promise<AggregateColors>,
+export interface AggregateFontPairingPromise
+  extends Promise<AggregateFontPairing>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateColorsSubscription
-  extends Promise<AsyncIterator<AggregateColors>>,
+export interface AggregateFontPairingSubscription
+  extends Promise<AsyncIterator<AggregateFontPairing>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -1119,109 +894,159 @@ export interface ThemeSubscriptionPayloadSubscription
   previousValues: <T = ThemePreviousValuesSubscription>() => T;
 }
 
-export interface PostSubscriptionPayload {
-  mutation: MutationType;
-  node: Post;
-  updatedFields: String[];
-  previousValues: PostPreviousValues;
-}
-
-export interface PostSubscriptionPayloadPromise
-  extends Promise<PostSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = PostPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = PostPreviousValuesPromise>() => T;
-}
-
-export interface PostSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<PostSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = PostSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = PostPreviousValuesSubscription>() => T;
-}
-
-export interface ColorsEdge {
-  node: Colors;
-  cursor: String;
-}
-
-export interface ColorsEdgePromise extends Promise<ColorsEdge>, Fragmentable {
-  node: <T = ColorsPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface ColorsEdgeSubscription
-  extends Promise<AsyncIterator<ColorsEdge>>,
-    Fragmentable {
-  node: <T = ColorsSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface FontsPreviousValues {
+export interface ColorPalletePreviousValues {
   id: ID_Output;
-  primary: String;
-  secondary: String;
+  title?: String;
+  primaryLight: String;
+  primaryDark: String;
+  accentLight: String;
+  accentDark: String;
+  accentBrand: String;
 }
 
-export interface FontsPreviousValuesPromise
-  extends Promise<FontsPreviousValues>,
+export interface ColorPalletePreviousValuesPromise
+  extends Promise<ColorPalletePreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  primary: () => Promise<String>;
-  secondary: () => Promise<String>;
+  title: () => Promise<String>;
+  primaryLight: () => Promise<String>;
+  primaryDark: () => Promise<String>;
+  accentLight: () => Promise<String>;
+  accentDark: () => Promise<String>;
+  accentBrand: () => Promise<String>;
 }
 
-export interface FontsPreviousValuesSubscription
-  extends Promise<AsyncIterator<FontsPreviousValues>>,
+export interface ColorPalletePreviousValuesSubscription
+  extends Promise<AsyncIterator<ColorPalletePreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  primary: () => Promise<AsyncIterator<String>>;
-  secondary: () => Promise<AsyncIterator<String>>;
+  title: () => Promise<AsyncIterator<String>>;
+  primaryLight: () => Promise<AsyncIterator<String>>;
+  primaryDark: () => Promise<AsyncIterator<String>>;
+  accentLight: () => Promise<AsyncIterator<String>>;
+  accentDark: () => Promise<AsyncIterator<String>>;
+  accentBrand: () => Promise<AsyncIterator<String>>;
 }
 
-export interface FontsSubscriptionPayload {
+export interface ColorPalleteSubscriptionPayload {
   mutation: MutationType;
-  node: Fonts;
+  node: ColorPallete;
   updatedFields: String[];
-  previousValues: FontsPreviousValues;
+  previousValues: ColorPalletePreviousValues;
 }
 
-export interface FontsSubscriptionPayloadPromise
-  extends Promise<FontsSubscriptionPayload>,
+export interface ColorPalleteSubscriptionPayloadPromise
+  extends Promise<ColorPalleteSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = FontsPromise>() => T;
+  node: <T = ColorPalletePromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = FontsPreviousValuesPromise>() => T;
+  previousValues: <T = ColorPalletePreviousValuesPromise>() => T;
 }
 
-export interface FontsSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<FontsSubscriptionPayload>>,
+export interface ColorPalleteSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ColorPalleteSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = FontsSubscription>() => T;
+  node: <T = ColorPalleteSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = FontsPreviousValuesSubscription>() => T;
+  previousValues: <T = ColorPalletePreviousValuesSubscription>() => T;
 }
 
-export interface AggregatePost {
-  count: Int;
+export interface ColorPallete {
+  id: ID_Output;
+  title?: String;
+  primaryLight: String;
+  primaryDark: String;
+  accentLight: String;
+  accentDark: String;
+  accentBrand: String;
 }
 
-export interface AggregatePostPromise
-  extends Promise<AggregatePost>,
+export interface ColorPalletePromise
+  extends Promise<ColorPallete>,
     Fragmentable {
-  count: () => Promise<Int>;
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  primaryLight: () => Promise<String>;
+  primaryDark: () => Promise<String>;
+  accentLight: () => Promise<String>;
+  accentDark: () => Promise<String>;
+  accentBrand: () => Promise<String>;
 }
 
-export interface AggregatePostSubscription
-  extends Promise<AsyncIterator<AggregatePost>>,
+export interface ColorPalleteSubscription
+  extends Promise<AsyncIterator<ColorPallete>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  primaryLight: () => Promise<AsyncIterator<String>>;
+  primaryDark: () => Promise<AsyncIterator<String>>;
+  accentLight: () => Promise<AsyncIterator<String>>;
+  accentDark: () => Promise<AsyncIterator<String>>;
+  accentBrand: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ColorPalleteNullablePromise
+  extends Promise<ColorPallete | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  primaryLight: () => Promise<String>;
+  primaryDark: () => Promise<String>;
+  accentLight: () => Promise<String>;
+  accentDark: () => Promise<String>;
+  accentBrand: () => Promise<String>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface Theme {
+  id: ID_Output;
+  title: String;
+  description: String;
+}
+
+export interface ThemePromise extends Promise<Theme>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  colors: <T = ColorPalletePromise>() => T;
+  fonts: <T = FontPairingPromise>() => T;
+}
+
+export interface ThemeSubscription
+  extends Promise<AsyncIterator<Theme>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  colors: <T = ColorPalleteSubscription>() => T;
+  fonts: <T = FontPairingSubscription>() => T;
+}
+
+export interface ThemeNullablePromise
+  extends Promise<Theme | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  colors: <T = ColorPalletePromise>() => T;
+  fonts: <T = FontPairingPromise>() => T;
 }
 
 export interface ThemeEdge {
@@ -1241,55 +1066,42 @@ export interface ThemeEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateFonts {
-  count: Int;
+export interface FontPairingPreviousValues {
+  id: ID_Output;
+  title?: String;
+  primary: String;
+  secondary: String;
 }
 
-export interface AggregateFontsPromise
-  extends Promise<AggregateFonts>,
+export interface FontPairingPreviousValuesPromise
+  extends Promise<FontPairingPreviousValues>,
     Fragmentable {
-  count: () => Promise<Int>;
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  primary: () => Promise<String>;
+  secondary: () => Promise<String>;
 }
 
-export interface AggregateFontsSubscription
-  extends Promise<AsyncIterator<AggregateFonts>>,
+export interface FontPairingPreviousValuesSubscription
+  extends Promise<AsyncIterator<FontPairingPreviousValues>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  primary: () => Promise<AsyncIterator<String>>;
+  secondary: () => Promise<AsyncIterator<String>>;
 }
 
-export interface PostConnection {
-  pageInfo: PageInfo;
-  edges: PostEdge[];
-}
-
-export interface PostConnectionPromise
-  extends Promise<PostConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PostEdge>>() => T;
-  aggregate: <T = AggregatePostPromise>() => T;
-}
-
-export interface PostConnectionSubscription
-  extends Promise<AsyncIterator<PostConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PostEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePostSubscription>() => T;
-}
+export type Long = string;
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
 */
 export type Int = number;
 
-export type Long = string;
-
 /*
-The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+The `Boolean` scalar type represents `true` or `false`.
 */
-export type ID_Input = string | number;
-export type ID_Output = string;
+export type Boolean = boolean;
 
 /*
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
@@ -1297,9 +1109,10 @@ The `String` scalar type represents textual data, represented as UTF-8 character
 export type String = string;
 
 /*
-The `Boolean` scalar type represents `true` or `false`.
+The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
 */
-export type Boolean = boolean;
+export type ID_Input = string | number;
+export type ID_Output = string;
 
 /**
  * Model Metadata
@@ -1307,19 +1120,15 @@ export type Boolean = boolean;
 
 export const models: Model[] = [
   {
-    name: "Post",
-    embedded: false
-  },
-  {
     name: "Theme",
     embedded: false
   },
   {
-    name: "Colors",
+    name: "ColorPallete",
     embedded: false
   },
   {
-    name: "Fonts",
+    name: "FontPairing",
     embedded: false
   }
 ];

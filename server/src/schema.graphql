@@ -1,34 +1,28 @@
 type Query {
-  feed: [Post!]!
-  drafts: [Post!]!
-  post(id: ID!): Post
+  # feed: [Post!]!
+  # drafts: [Post!]!
+  # post(id: ID!): Post
   theme(id: ID!): Theme
   themes: [Theme!]!
 }
 
 type Mutation {
-  createDraft(title: String!, content: String): Post
-  deletePost(id: ID!): Post
-  publish(id: ID!): Post
-}
-
-type Post {
-  id: ID!
-  published: Boolean!
-  title: String!
-  content: String!
+#   createDraft(title: String!, content: String): Post
+#   deletePost(id: ID!): Post
+#   publish(id: ID!): Post
 }
 
 type Theme {
   id: ID!
   title: String!
   description: String!
-  colors: Colors!
-  font: Fonts!
+  colors: ColorPallete!
+  fonts: FontPairing!
 }
 
-type Colors {
+type ColorPallete {
   id: ID!
+  title: String
   primaryLight: String!
   primaryDark: String!
   accentLight: String!
@@ -36,8 +30,9 @@ type Colors {
   accentBrand: String!
 }
 
-type Fonts {
+type FontPairing {
   id: ID!
+  title: String
   primary: String!
   secondary: String!
 }
