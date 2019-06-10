@@ -7,7 +7,7 @@ import {
 import Themes from '../themes'
 import Colors from '../colors'
 import Fonts from '../fonts'
-import Header from '../header'
+import Header from '../../components/header'
 import Home from '../home';
 export default function App() {
   return (
