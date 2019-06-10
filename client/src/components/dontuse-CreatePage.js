@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Mutation } from 'react-apollo'
 import  { gql } from 'apollo-boost'
-import { DRAFTS_QUERY } from './DraftsPage'
+import { DRAFTS_QUERY } from './dontuse-DraftsPage'
 
 class CreatePage extends Component {
   state = {
