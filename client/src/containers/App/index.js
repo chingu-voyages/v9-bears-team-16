@@ -9,7 +9,7 @@ import Home from '../home'
 import fetchColors from '../../utilities/fetch-colors'
 export default function App() {
   //example fetch color api call with suggestion for what color to use for primary light
-  console.log(fetchColors({ primaryLight: [236, 233, 222] }))
+  console.log(fetchColors({ primaryLight: "#FFEEDD" }))
   return (
     <>
       <Header />
