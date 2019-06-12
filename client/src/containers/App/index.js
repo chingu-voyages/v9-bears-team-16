@@ -8,7 +8,8 @@ import Header from '../../components/header'
 import Home from '../home'
 import fetchColors from '../../utilities/fetch-colors'
 export default function App() {
-  fetchColors().then(console.log)
+  //example fetch color api call with suggestion for what color to use for primary light
+  console.log(fetchColors({ primaryLight: [236, 233, 222] }))
   return (
     <>
       <Header />

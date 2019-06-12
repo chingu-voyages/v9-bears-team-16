@@ -9,12 +9,28 @@ basic color fetch example need to change function signature to accept and return
     primaryDark
   }
 
-*/ 
+*/
 
-export default function fetchColors() {
+export default function fetchColors(
+  {
+    primaryLight = 'N',
+    accentLight = 'N',
+    accentBrand = 'N',
+    accentDark = 'N',
+    primaryDark = 'N'
+  } = {
+    primaryLight: 'N',
+    accentLight: 'N',
+    accentBrand: 'N',
+    accentDark: 'N',
+    primaryDark: 'N'
+  }
+) {
   return fetch(`http://colormind.io/api/`, {
     method: 'POST',
-    body: JSON.stringify({ model: `ui` })
+    body: JSON.stringify({
+      model: `ui`,
+      input: [primaryLight, accentLight, accentBrand, accentDark, primaryDark]
+    })
   }).then(response => response.json())
-
 }
