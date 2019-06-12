@@ -44,5 +44,14 @@ export default function fetchColors(
     })
   })
     .then(response => response.json())
-    .then(({ result }) => result.map(([r, g, b]) => rgbToHex(r, g, b)))
+    .then(({ result }) => {
+      const [
+        primaryLight,
+        accentLight,
+        accentBrand,
+        accentDark,
+        primaryDark
+      ] = result.map(([r, g, b]) => rgbToHex(r, g, b))
+      return { primaryLight, accentLight, accentBrand, accentDark, primaryDark }
+    })
 }
