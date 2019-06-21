@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Query } from 'react-apollo'
 import { gql } from 'apollo-boost'
 import ColorPalleteTile from '../../components/color-pallete-tile'
+import styled from 'styled-components';
+import fetchColors from '../../utilities/fetch-colors'
+
 export default function Colors() {
+  const [ color, setColor ] = useState('');
+
+  const Container = styled.div`
+    background-image: linear-gradient(${color.primaryLight}, ${color.accentLight}, ${color.accentBrand}, ${color.accentDark}, ${color.primaryDark});
+    min-height: 20vh;
+  `;
+
   return (
     <>
       <div>
@@ -28,14 +38,27 @@ export default function Colors() {
 
           return (
             <>
+            
               <h1>Color Pallets</h1>
+              <Container><button onClick={handleClick}>Change Color</button></Container>
+              
               {data.colorPalletes && data.colorPalletes.map(ColorPalleteTile)}
+
             </>
           )
         }}
       </Query>
     </>
   )
+
+  function handleClick(e) {
+    e.preventDefault();
+    fetchColors()
+      .then(result => {
+        setColor(result);
+      });
+    return ;
+  }
 }
 
 export const COLORS_QUERY = gql`

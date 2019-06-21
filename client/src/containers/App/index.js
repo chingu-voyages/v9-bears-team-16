@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 import Themes from '../themes'
@@ -6,10 +6,7 @@ import Colors from '../colors'
 import Fonts from '../fonts'
 import Header from '../../components/header'
 import Home from '../home'
-import fetchColors from '../../utilities/fetch-colors'
 export default function App() {
-  //example fetch color api call with suggestion for what color to use for primary light
-  console.log(fetchColors({ primaryLight: "#FFEEDD" }))
   return (
     <>
       <Header />
