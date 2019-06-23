@@ -1,0 +1,36 @@
+* {
+    margin: 0 auto;
+}
+
+.colors {
+    width: 100%;
+    &-title {
+        font-size: 2em;
+        text-align: center;
+        padding: 1em 0;
+    }
+}
+
+.colors-main {
+    display: flex;
+    &-info {
+        flex: 1;
+    }
+    &-color {
+        flex: 1;
+
+        .colors-tile {
+            height: 45%;
+            width: 50%;
+            display: flex;
+            flex-direction: row;
+            margin: 2em auto;
+            .colortile {
+                flex: 1;
+                // width: 1.5em;
+                // align-self: center;
+                
+            }
+        }
+    }
+}
