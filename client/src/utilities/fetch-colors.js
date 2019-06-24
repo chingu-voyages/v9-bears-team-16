@@ -38,10 +38,14 @@ export default function fetchColors(
 
   return fetch(`http://colormind.io/api/`, {
     method: 'POST',
-    body: JSON.stringify({
-      model: `ui`,
-      input: parsedInput
-    })
+    body: JSON.stringify(
+      parsedInput.every(value => value === 'N')
+        ? { model: `ui` }
+        : {
+            model: `ui`,
+            input: parsedInput
+          }
+    )
   })
     .then(response => response.json())
     .then(({ result }) => {

@@ -2,19 +2,30 @@ import React, { useState } from 'react'
 import { Query } from 'react-apollo'
 import { gql } from 'apollo-boost'
 import ColorPalleteTile from '../../components/color-pallete-tile'
-import styled from 'styled-components';
+import styled from 'styled-components'
 import fetchColors from '../../utilities/fetch-colors'
 
-import './colors.scss';
+import './colors.scss'
 
 export default function Colors() {
-  const [ color, setColor ] = useState('');
-  const [ colorArr, setColorArr ] = useState([]);
+  const [color, setColor] = useState('')
+  const [colorArr, setColorArr] = useState([])
 
   const Container = styled.div`
-    background-image: linear-gradient(45deg, ${color.primaryLight}, ${color.accentLight}, ${color.accentBrand}, ${color.accentDark}, ${color.primaryDark});
+    border: 1px solid ${color.primaryDark || 'black'};
+    background-image: linear-gradient(
+      to right,
+      ${color.primaryLight} 20%,
+      ${color.accentLight} 20%,
+      ${color.accentLight} 40%,
+      ${color.accentBrand} 40%,
+      ${color.accentBrand} 60%,
+      ${color.accentDark} 60%,
+      ${color.accentDark} 80%,
+      ${color.primaryDark} 80%
+    );
     min-height: 20vh;
-  `;
+  `
 
   return (
     <>
@@ -38,33 +49,57 @@ export default function Colors() {
               </div>
             )
           }
-          console.log(data.colorPalletes);
-          setColorArr(data.colorPalletes);
-          console.log(colorArr);
+          console.log(data.colorPalletes)
+          setColorArr(data.colorPalletes)
+          console.log(colorArr)
           return (
-              <div className="colors">
-                <h1 className="colors-title">Color Pallets</h1>
-                <Container><button onClick={handleClick}>Change Color</button></Container>
-                
-                <div className="colors-main">
-                  <div className="colors-main-info">
-                    {data.colorPalletes && data.colorPalletes.map(ColorPalleteTile)}
-                  </div>
-                  
-                  <div className="colors-main-color">
-                    {colorArr.map(item => {
-                      return <div className="colors-tile">
-                        <div className="colortile" style={{backgroundColor: item.primaryLight}}>{item.primaryLight}</div>
-                        <div className="colortile" style={{backgroundColor: item.accentLight}}>{item.accentLight}</div>
-                        <div className="colortile" style={{backgroundColor: item.accentBrand}}>{item.accentBrand}</div>
-                        <div className="colortile" style={{backgroundColor: item.accentDark}}>{item.accentDark}</div>
-                        <div className="colortile" style={{backgroundColor: item.primaryDark}}>{item.primaryDark}</div>
-                      </div>
-                    })}
-                  </div>
+            <div className="colors">
+              <h1 className="colors-title">Color Pallets</h1>
+              <Container>
+                <button onClick={handleClick}>Change Color</button>
+              </Container>
+
+              <div className="colors-main">
+                <div className="colors-main-info">
+                  {data.colorPalletes &&
+                    data.colorPalletes.map(ColorPalleteTile)}
                 </div>
 
+                <div className="colors-main-color">
+                  {colorArr.map(item => {
+                    return (
+                      <div className="colors-tile">
+                        <div
+                          className="colortile"
+                          style={{ backgroundColor: item.primaryLight }}>
+                          {item.primaryLight}
+                        </div>
+                        <div
+                          className="colortile"
+                          style={{ backgroundColor: item.accentLight }}>
+                          {item.accentLight}
+                        </div>
+                        <div
+                          className="colortile"
+                          style={{ backgroundColor: item.accentBrand }}>
+                          {item.accentBrand}
+                        </div>
+                        <div
+                          className="colortile"
+                          style={{ backgroundColor: item.accentDark }}>
+                          {item.accentDark}
+                        </div>
+                        <div
+                          className="colortile"
+                          style={{ backgroundColor: item.primaryDark }}>
+                          {item.primaryDark}
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
+            </div>
           )
         }}
       </Query>
@@ -72,12 +107,11 @@ export default function Colors() {
   )
 
   function handleClick(e) {
-    e.preventDefault();
-    fetchColors()
-      .then(result => {
-        setColor(result);
-      });
-    return ;
+    e.preventDefault()
+    fetchColors().then(result => {
+      setColor(result)
+    })
+    return
   }
 }
 
