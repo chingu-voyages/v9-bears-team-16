@@ -44,7 +44,7 @@ export default function Colors() {
           return (
               <div className="colors">
                 <h1 className="colors-title">Color Pallets</h1>
-                {/* <Container><button onClick={handleClick}>Change Color</button></Container> */}
+                <Container><button onClick={handleClick}>Change Color</button></Container>
                 
                 <div className="colors-main">
                   <div className="colors-main-info">
