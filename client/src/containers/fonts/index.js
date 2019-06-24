@@ -36,7 +36,8 @@ export default function Fonts() {
           return (
             <>
               <h1>Font Pairings</h1>
-              <button style={{ fontFamily: font }} onClick={handleClick} >CLick ME</button>
+              <button onClick={handleClick} >Click Me</button>
+              <div>{font}</div>
               {data.fontPairings && data.fontPairings.map(FontPairingTile)}
             </>
           )
