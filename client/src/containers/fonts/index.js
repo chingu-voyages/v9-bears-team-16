@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Query } from 'react-apollo'
 import { gql } from 'apollo-boost'
 import FontPairingTile from '../../components/font-pairing-tile'
 
+import fetchFonts from '../../utilities/fetch-fonts'
+
 export default function Fonts() {
+  const [ font, setFont ] = useState('');
+
+
+
   return (
     <>
       <div>
@@ -30,6 +36,8 @@ export default function Fonts() {
           return (
             <>
               <h1>Font Pairings</h1>
+              <button onClick={handleClick} >Click Me</button>
+              <div>{font}</div>
               {data.fontPairings && data.fontPairings.map(FontPairingTile)}
             </>
           )
@@ -37,6 +45,16 @@ export default function Fonts() {
       </Query>
     </>
   )
+
+  function handleClick(e) {
+    e.preventDefault();
+    fetchFonts().then(result => {
+      console.log(result);
+      setFont(result.content.family);
+      console.log(result.content.family);
+      return;
+    })
+  }
 }
 
 export const FONTS_QUERY = gql`
