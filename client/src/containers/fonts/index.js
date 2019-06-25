@@ -62,8 +62,18 @@ export const FONTS_QUERY = gql`
     fontPairings {
       id
       title
-      primary
-      secondary
+      titleFont{
+        title
+        variant
+      }
+      subTitleFont{
+        title
+        variant
+      }
+      contentFont{
+        title
+        variant
+      }
     }
   }
 `
