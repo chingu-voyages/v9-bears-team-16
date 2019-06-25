@@ -1,6 +1,7 @@
-* {
-    margin: 0 auto;
-}
+// * {
+//     margin: 0 auto;
+// Had to comment this out, the styles on this file aren't scoped to the component so they're applying to the whole app.
+// }
 
 .colors {
     width: 100%;
