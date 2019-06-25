@@ -15,6 +15,10 @@ var models = [
   {
     name: "FontPairing",
     embedded: false
+  },
+  {
+    name: "Font",
+    embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({

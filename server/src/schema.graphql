@@ -8,6 +8,8 @@ type Query {
   colorPalletes: [ColorPallete!]!
   fontPairing(id: ID!): FontPairing
   fontPairings: [FontPairing!]!
+  font(id: ID!): Font
+  fonts: [Fonts!]!
 }
 
 type Mutation {
@@ -17,6 +19,8 @@ type Mutation {
   colorPalletes: [ColorPallete!]!
   fontPairing(id: ID!): FontPairing
   fontPairings: [FontPairing!]!
+  font(id: ID!): Font
+  fonts: [Fonts!]!
 }
 
 type Theme {
@@ -39,7 +43,14 @@ type ColorPallete {
 
 type FontPairing {
   id: ID!
-  title: String
-  primary: String!
-  secondary: String!
+  title: String!
+  titleFont: Font!
+  subTitleFont: Font!
+  contentFont: Font!
+}
+
+type Font {
+  id: ID!
+  title: String!
+  variant: String!
 }

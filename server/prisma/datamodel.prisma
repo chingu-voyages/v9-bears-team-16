@@ -19,6 +19,13 @@ type ColorPallete {
 type FontPairing {
   id: ID! @id
   title: String
-  primary: String!
-  secondary: String!
+  titleFont: Font @relation(name: "TitleFont")
+  subTitleFont: Font @relation(name: "SubTitleFont")
+  contentFont: Font @relation(name: "ContentFont")
+}
+
+type Font {
+  id: ID!  @id
+  title: String!
+  variant: String!
 }
