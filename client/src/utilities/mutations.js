@@ -46,3 +46,96 @@ const CREATE_COLOR_PALLETE = gql`
     }
   }
 `
+// const exampleColorPalleteCreateVariables = {
+//   "primaryLight": "#F4F3F0",
+//   "accentLight": "#AD8A5E",
+//   "accentBrand": "#84A9BE",
+//   "accentDark": "#987450",
+//   "primaryDark": "#48629B"
+// }
+
+
+const CREATE_THEME = gql`
+  mutation(
+    $title: String!
+    $description: String!
+    $colors: ColorPalleteCreateOneInput!
+    $fonts: FontPairingCreateOneInput!
+  ) {
+    createTheme(
+      data: {
+        title: $title
+        description: $description
+        colors: $colors
+        fonts: $fonts
+      }
+    ) {
+      id
+      title
+      description
+      colors {
+        id
+        primaryLight
+        primaryLight
+        accentBrand
+        accentDark
+        primaryDark
+      }
+      fonts {
+        id
+        title
+        titleFont {
+          id
+          title
+          variant
+        }
+        subTitleFont {
+          id
+          title
+          variant
+        }
+        contentFont {
+          id
+          title
+          variant
+        }
+      }
+    }
+  }
+`
+
+// const exampleThemeCreateVariable = {
+//   title: 'fromMutation',
+//   description: 'Mutation Test',
+//   colors: {
+//     create: {
+//       primaryLight: '#F4F3F0',
+//       accentBrand: '#84A9BE',
+//       accentDark: '#987450',
+//       accentLight: '#AD8A5E',
+//       primaryDark: '#48629B'
+//     }
+//   },
+//   fonts: {
+//     create: {
+//       titleFont: {
+//         create: {
+//           title: 'title font from mutation',
+//           variant: 'regular'
+//         }
+//       },
+//       subTitleFont: {
+//         create: {
+//           title: 'subtitle font from mutation',
+//           variant: 'regular'
+//         }
+//       },
+//       contentFont: {
+//         create: {
+//           title: 'content font from mutation',
+//           variant: 'regular'
+//         }
+//       }
+//     }
+//   }
+// }
