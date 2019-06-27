@@ -62,3 +62,58 @@ export const FONTS_QUERY = gql`
     }
   }
 `
+
+export const FONT_PAIRING_MUTATION = gql`
+  mutation(
+    $title: String!
+    $titleFont: FontCreateOneInput!
+    $subTitleFont: FontCreateOneInput!
+    $contentFont: FontCreateOneInput!
+  ) {
+    createFontPairing(
+      data: {
+        title: $title
+        titleFont: $titleFont
+        subTitleFont: $subTitleFont
+        contentFont: $contentFont
+      }
+    ) {
+      id
+      title
+      titleFont {
+        title
+        variant
+      }
+      subTitleFont {
+        title
+        variant
+      }
+      contentFont {
+        title
+        variant
+      }
+    }
+  }
+`
+
+// const expectedArgsForMutation = {
+//   title: 'create font pairing mutation',
+//   titleFont: {
+//     create: {
+//       title: 'title font from mutation',
+//       variant: 'regular'
+//     }
+//   },
+//   subTitleFont: {
+//     create: {
+//       title: 'subtitle font from mutation',
+//       variant: 'regular'
+//     }
+//   },
+//   contentFont: {
+//     create: {
+//       title: 'content font from mutation',
+//       variant: 'regular'
+//     }
+//   }
+// }
