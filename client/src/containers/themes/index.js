@@ -55,8 +55,18 @@ export const THEME_QUERY = gql`
       fonts {
         id
         title
-        primary
-        secondary
+        titleFont {
+          title
+          variant
+        }
+        subTitleFont {
+          title
+          variant
+        }
+        contentFont {
+          title
+          variant
+        }
       }
     }
   }

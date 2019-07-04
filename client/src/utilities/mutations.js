@@ -8,11 +8,41 @@ import { Mutation } from 'react-apollo'
 // }
 
 const CREATE_FONT = gql`
-  mutation($title: String!, $variant: String!) {
-    createFont(data: { title: $title, variant: $variant }) {
+  mutation(
+    $title: String! 
+    $variant: String!
+  ) {
+    createFont(
+      data: { 
+        title: $title, 
+        titleFont {
+          title: $titleFont.title
+          variant: $titleFont.variant
+        }
+        subTitleFont {
+          title: $subTitleFont.title
+          variant: $subTitleFont.variant
+        }
+        contentFont {
+          title$: $contentFont.title
+          variant: $contentFont.variant
+        }
+      }
+    ) {
       id
       title
-      variant
+      titleFont {
+        title
+        variant
+      }
+      subTitleFont {
+        title
+        variant
+      }
+      contentFont {
+        title
+        variant
+      }
     }
   }
 `
